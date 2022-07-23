@@ -10,7 +10,7 @@ connectDB()
 app.use(cors());
 app.use(express.json({extended: false}))
 const ErrorHandler = require('./err/ErrorHandler');
-
+app.options('*', cors())
 //routers
 const UtilisateurRouter = require('./routers/UtilisateurRouter');
 const AdminRouter = require('./routers/AdminRouter');

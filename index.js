@@ -19,6 +19,7 @@ const PaiementCommandeRouter = require('./routers/PaiementCommandeRouter');
 const ProduitRouter = require('./routers/ProduitRouter');
 const TarifRouter = require('./routers/TarifRouter');
 const TypeDePaiementRouter = require('./routers/TypeDePaiementRouter');
+const MvolaRouter = require('./routers/MvolaRouter')
 
 const version = process.env.API_VERSION || "api/v1"
 //using routers
@@ -29,7 +30,7 @@ app.use(`/${version}/typeDePaiement`, TypeDePaiementRouter);
 app.use(`/${version}/commande`, CommandeRouter);
 app.use(`/${version}/paiementCommande`, PaiementCommandeRouter);
 app.use(`/${version}/produit`, ProduitRouter);
-
+app.use(`/${version}/mvola`, MvolaRouter);
 //Using error handler
 app.use(ErrorHandler)
 

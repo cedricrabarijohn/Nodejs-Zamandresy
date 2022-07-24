@@ -1,17 +1,18 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-var allowCrossDomain = function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+var allowCrossDomain = function (req, res, next) {
+    response.setHeader("Access-Control-Allow-Origin", "*");
+    response.setHeader("Access-Control-Allow-Credentials", "true");
+    response.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+    response.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
 
     // intercept OPTIONS method
     if ('OPTIONS' == req.method) {
-      res.send(200);
+        res.send(200);
     }
     else {
-      next();
+        next();
     }
 };
 app.use(allowCrossDomain);
@@ -21,7 +22,7 @@ connectDB()
 
 //App cors, express.json and error handler
 app.use(cors());
-app.use(express.json({extended: false}))
+app.use(express.json({ extended: false }))
 const ErrorHandler = require('./err/ErrorHandler');
 app.options('*', cors())
 //routers
@@ -48,6 +49,6 @@ app.use(`/${version}/mvola`, MvolaRouter);
 app.use(ErrorHandler)
 
 const PORT = process.env.PORT || 3001
-app.listen(PORT,()=>{
+app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
 });

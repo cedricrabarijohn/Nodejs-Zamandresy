@@ -35,7 +35,7 @@ const InitiateRequest = async (b64, userAccountIdentifier, partnerName, amount, 
         await Authenticate(b64, (callback) => {
             const access_token = callback.access_token;
             const correlationId = correlator.getId()
-            console.log(correlationId)
+            // console.log(correlationId)
             const headers = {
                 'Authorization': `bearer ${access_token}`,
                 'Version': `1.0`,

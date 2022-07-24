@@ -16,6 +16,10 @@ const InitiateRequest = async (req, res, next) => {
     try {
         const { useraccountidentifier, partnername } = req.headers
         const { amount, description, debitMsisdn, creditMsisdn } = req.body
+        if(!req.headers.authorization){
+            next(ApiError.serverError(`Please provide an authorization token`))
+            return
+        }
         const b64 = req.headers.authorization.split(' ')[1]
         const initiate = await MvolaService.InitiateRequest(b64, useraccountidentifier, partnername, amount, description, debitMsisdn, creditMsisdn, (callback) => {
             // console.log(callback)
